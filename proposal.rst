@@ -79,11 +79,7 @@ About You
 
  * linkedln URL: https://www.linkedin.com/in/vaibhav-kansagara-087331156/
 
- * Biography:
-
-I am 3rd year undergraduate currently pursuing Integrated Mtech in Computer Science at International Institute of 
-Information Technology,Bangalore. I was selected for ACM-ICPC Amritapuri Regionals in 2018. I love machine learning
-and coding in C++ and competitive programming.
+ * Biography: I am 3rd year undergraduate currently pursuing Integrated Mtech in Computer Science at International Institute of Information Technology,Bangalore. I was selected for ACM-ICPC Amritapuri Regionals in 2018. I love machine learning and coding in C++ and competitive programming.
 
 Background Information
 ----------------------
