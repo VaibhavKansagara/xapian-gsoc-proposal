@@ -185,7 +185,7 @@ involving C++ and machine learning which are mentioned above.
 
 **What timezone will you be in during the coding period?**
 
-UTC 3:30 am to UTC 12:30 pm
+UTC+5:30
 
 **Will your Summer of Code project be the main focus of your time during the
 program?**
@@ -257,9 +257,10 @@ independently of the overall API), and also looking at corner cases and exceptio
 
 This part involves writing test about each and every API(non-existing). I have written a sample unittest for one feature in #226 which would be
 easy to extend for the remaining 16 features which broadly comprises of 3 test(title,body,whole) of individual feature like TfDoclenfeature and
-last one being weight.Additionally this project invloves addition of various different rankers and score metrics which would need
-their individual tests as well. Also currently ranker tests(for rankers like listmle,listnet,svmranker) are not detailed enough which
-test each and every function(method)so i would like to add more detailed test which cover entire API for rankers.
+last one being weight. Also currently the FeatureList class has test which only tests the default 6 features(like TfDoclenfeature) so adding
+more features and testing them would be a good idea.Additionally this project invloves addition of various different rankers and score
+metrics which would need their individual tests as well. Also currently ranker tests(for rankers like listmle,listnet,svmranker) are not
+detailed enough which test each and every function(method)so i would like to add more detailed test which cover entire API for rankers.
 
 *Create an evaluation and performance reporting system for letor, so that both usefulness and speed
 can be investigated. This should use public datasets. Integrate remaining rankers and scorers.*
@@ -300,19 +301,25 @@ and would also allow implementation of weighting schemes like BM25F and PL2F*
 
 This part involves about 5 steps and likely more:
 
-1) For getting document fields like len("title"),len("body"),len("whole") we should have members which store each of these and a method to
-retrieve them in document class, as such methods doesn't exist currently in the document class
+1) First step is to determine for which prefixes we want the length to be tracked. User will probably determine these.
 
-2)Implement methods in Database class which takes the docid and return the corresponding information
+2) After determining which prefixes to track the length for we should have members which store each of these and a method to
+retrieve them in document class, as such methods doesn't exist currently in the document class. This includes both the databases which
+support metadata and those which doesn't support metadata. For honey we can serialise new fields into the version file iamhoney
+by just adding them after existing fields and older versions reading the database will just ignore them. On the other hand glass will throw
+an exception if it finds extra data at the end of the version file. For this problem we could add an optional file alongside iamglass to 
+take these extra stats or just leave them in the user metadata for glass. For inmemory database we could store them as additional inmemory
+storage.Thanks to olly and jaylett for making this more clear.
 
-3)remove the corresponding code to calculate these from compute_doc_length() method in featurelist_internal.cc
+3) We also need to have a way to update those fields.
 
-4)For database backends which doesn\'t support metadata we need to store the information of len("title"),len("body"),len("whole") of 
-entire database and have methods for retrieving them.
+4)Implement methods in Database class which takes the docid and return the corresponding information
 
-5)remove the corresponding code from compute_collection_length() method in featurelist_internal.cc.
+5)remove the corresponding code to calculate these from compute_doc_length() method in featurelist_internal.cc
 
-**These are low-priority ideas to develop letor incase everything goes as planned.**
+6)remove the corresponding code from compute_collection_length() method in featurelist_internal.cc.
+
+**These are low-priority ideas to develop letor incase everything goes as planned.(stretch goals)**
 
 *Use a linear regression approach to combine the scores given by different Rankers*
 
@@ -331,13 +338,13 @@ Eliminating this would be beneficial.
 
 **Deleiverables**
 
-* Make the xapian-letor releasable with extensive test,documentation,example code.
+* Make the xapian-letor releasable with extensive test and documentation.
+
+* Write bindings for xapian-letor and example code.
 
 * Make the xapian-evaluation module releasable.
 
-* Integrate more rankers and scorers with letor and test for them.
-
-* Write bindings for xapian-letor.
+* Integrate more rankers and scorers with letor and test for them(stretch goal).
 
 **Do you have any preliminary findings or results which suggest that your
 approach is possible and likely to succeed?**
@@ -427,20 +434,21 @@ Understand the codebase.Learn more about swig-based bindings and about make dist
 Week-1 May 27-June 3 
 
 Create practical code examples that use core features and API,fix the issues with the incomplete PR
-of ayush_pandey.
+of ayush_pandey.Add documentation of how to use the training API as well as the letor re-ranking API.
 
 Week-2 June 3-June 10
 
-Write the example code for xapian-letor in python,java etc.
+Write test about various api\'s and unit test cases for features.
+Release PR's for this part and start the implementation-review-change cycle.
 
 Week-3 June 10-June 17
 
-Write test about various api\'s and unit test cases for features.
+Write test about various api\'s and unit test cases for features(continued). 
+Fix other known issues in xapian-letor. 
 
 Week-4 June 17-June 24
 
-Write test about various api\'s and unit test cases for features(continued). 
-Fix other known issues in xapian-letor.
+Finish any work after changes suggested by mentors to make it ready to merge into master.
 
 Phase 1 Evaluation
 
@@ -450,37 +458,47 @@ Fix the problem with make dist in xapian-letor and make xapian-letor officially 
 
 Week-6 July 1-July 8
 
-Fix the issues discussed above and likely many more in xapian-evaluation module.
+Understand more about bindings and related code.
+Add binding support for various languages.
 
 Week-7 July 8-July 15
 
-Fix the issues discussed above and likely many more in xapian-evaluation module(continued).
-Also fix other known issues or tickets.
+Add binding support for various languages(continued).
+Start the implementation-review-change cycle.
 
 Week-8 July 15-July 22
 
-Start Adding binding support for various languages.
+Add binding support for various languages(continued).
+Make it ready to get merged into the master.
+Write example code in python,java etc.
+Write Docuementation for example code.
 
 Phase 2 Evaluation
 
 Week-9 July 22-July 29
 
-Finish Adding binding support for various languages.
+Fix the issues discussed above and likely many more in xapian-evaluation module.
 
 Week-10 July 29-August 5
 
-Add support for database backend to track the length of the fields.
+Start discussing the implementation of adding support for the database backend.
+Fix the issues discussed above and likely many more in xapian-evaluation module(continued).
+Also fix other known issues or tickets.
 
 Week-11 August 5-August 12
 
-Implement Linear regression combining the scores of different rankers.
+Add support for letor in xapian-evaluation and test the performance of xapian-letor against standard benchmark datasets.
+Buffer period for any remaining work in xapian-evaluation.
+Also carry the discussion of the implementation of adding support for the database backend
 
 Week-12 August 12-August 19
 
-Write test for Linear regression and documentation for linear regression.
+Add support for database backend to track the length of the fields.
 
 Week-13 August 19-August 26
 
+Add support for database backend to track the length of the fields(continued).
+Make sure the code get's merged.
 Buffer period for any remaining work.
 
 Phase 3 Evaluation.
