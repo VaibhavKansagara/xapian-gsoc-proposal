@@ -194,7 +194,7 @@ Yes, Summer of Code project will be the main focus of my time during the program
 
 **Expected work hours (e.g. Monday–Friday 9am–5pm UTC)**
 
-50-60 hours but depending on the organisation needs i am willing to devote more time to the program if necessary.
+40 hours but depending on the organisation needs i am willing to devote more time to the program if necessary.
 
 **Are you applying for other projects in GSoC this year?  If so, with which
 organisation(s)?**
