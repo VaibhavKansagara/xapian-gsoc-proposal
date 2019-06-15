@@ -433,8 +433,7 @@ Understand the codebase.Learn more about swig-based bindings and about make dist
 
 Week-1 May 27-June 3 
 
-Create practical code examples that use core features and API,fix the issues with the incomplete PR
-of ayush_pandey.Add documentation of how to use the training API as well as the letor re-ranking API.
+Write test about various api\'s and unit test cases for features.
 
 Week-2 June 3-June 10
 
