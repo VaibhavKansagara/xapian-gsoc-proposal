@@ -469,36 +469,32 @@ Week-8 July 15-July 22
 
 Add binding support for various languages(continued).
 Make it ready to get merged into the master.
-Write example code in python,java etc.
-Write Docuementation for example code.
-
+Write example code in python3
+Make changes as per the review comments in the PRs which are left to merge.
 Phase 2 Evaluation
 
 Week-9 July 22-July 29
 
-Fix the issues discussed above and likely many more in xapian-evaluation module.
+Find the reason why letor is not performing as good as BM25+ weighting scheme.
+Add features if neccessary. Add tests along with any changes that are needed.
 
 Week-10 July 29-August 5
 
-Start discussing the implementation of adding support for the database backend.
-Fix the issues discussed above and likely many more in xapian-evaluation module(continued).
-Also fix other known issues or tickets.
+Chek the implementation of features,rankers and scorers.
 
 Week-11 August 5-August 12
 
-Add support for letor in xapian-evaluation and test the performance of xapian-letor against standard benchmark datasets.
-Buffer period for any remaining work in xapian-evaluation.
-Also carry the discussion of the implementation of adding support for the database backend
+Fix any bug found in the previous week and write tests for the same.
 
 Week-12 August 12-August 19
 
-Add support for database backend to track the length of the fields.
+Update the docs.
 
 Week-13 August 19-August 26
 
-Add support for database backend to track the length of the fields(continued).
-Make sure the code get's merged.
+Add bindings support for the remaining languages.
 Buffer period for any remaining work.
+Update the timeline,work product in xapian wiki.
 
 Phase 3 Evaluation.
 
