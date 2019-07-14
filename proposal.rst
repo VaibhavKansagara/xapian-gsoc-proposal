@@ -480,7 +480,7 @@ Add features if neccessary. Add tests along with any changes that are needed.
 
 Week-10 July 29-August 5
 
-Chek the implementation of features,rankers and scorers.
+Check the implementation of features,rankers and scorers.
 
 Week-11 August 5-August 12
 
